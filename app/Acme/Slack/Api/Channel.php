@@ -8,8 +8,15 @@ class Channel extends AbstractApi
 {
     public function create($name)
     {
-        $this->post('channels.create', [
+        return $this->post('channels.create', [
             'name'  => $name,
+            'token' => env('SLACK_TOKEN'),
+        ]);
+    }
+
+    public function all()
+    {
+        return $this->get('channels.list', [
             'token' => env('SLACK_TOKEN'),
         ]);
     }

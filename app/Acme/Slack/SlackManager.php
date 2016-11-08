@@ -9,7 +9,7 @@ class SlackManager
         $this->client = new \GuzzleHttp\Client([
             'base_uri' => 'https://slack.com/api/',
             'headers'  => [
-                'HTTP_Authorization' => 'Bearer' . env('SLACK_TOKEN'),
+                'HTTP_Authorization' => 'Bearer ' . env('SLACK_TOKEN'),
                 'Accept'             => 'application/json',
             ],
         ]);
@@ -18,7 +18,7 @@ class SlackManager
     public function api($api)
     {
         switch ($api) {
-            case 'channel':
+            case 'channels':
                 return new Api\Channel($this->client);
                 break;
 

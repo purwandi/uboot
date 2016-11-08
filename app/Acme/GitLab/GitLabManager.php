@@ -20,16 +20,18 @@ class GitLabManager
     public function api($api)
     {
         switch ($api) {
-            case 'projects':
-                return new Api\Project($this->client);
+            case 'boards':
+                return new Api\Board($this->client);
                 break;
             case 'issues':
                 return new Api\Issue($this->client);
                 break;
-            case 'boards':
-                return new Api\Board($this->client);
+            case 'labels':
+                return new Api\Label($this->client);
                 break;
-
+            case 'projects':
+                return new Api\Project($this->client);
+                break;
             default:
                 # code...
                 break;

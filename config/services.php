@@ -41,4 +41,10 @@ return [
         'redirect'      => env('GITLAB_REDIRECT_URI'),
     ],
 
+    'slack'     => [
+        'client_id'     => env('SLACK_KEY'),
+        'client_secret' => env('SLACK_SECRET'),
+        'redirect'      => env('SLACK_REDIRECT_URI'),
+    ],
+
 ];

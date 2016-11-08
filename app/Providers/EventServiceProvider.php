@@ -13,9 +13,12 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        \App\Events\IssueCreated::class                       => [
+            \App\Listeners\IssueCreatedListener::class,
+        ],
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
             // add your listeners (aka providers) here
-            'SocialiteProviders\GitLab\GitLabExtendSocialite@handle',
+            'SocialiteProviders\Slack\SlackExtendSocialite@handle',
         ],
     ];
 

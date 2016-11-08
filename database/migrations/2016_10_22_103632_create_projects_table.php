@@ -17,6 +17,9 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->string('name', 21);
             $table->string('description')->nullable();
+            $table->integer('gitlab_id')->nullable();
+            $table->integer('gitlab_namespace_id')->nullable();
+            $table->string('slack_id', 32)->nullable();
             $table->timestamps();
         });
     }

@@ -11,16 +11,21 @@ class AbstractApi
         $this->client = $client;
     }
 
-    public function get($url)
+    protected function get($url, $options = [])
     {
-        $response = $this->client->request('GET', $url);
-        return $response->getBody();
+        $response = $this->client->request('GET', $url, [
+            'query' => $options,
+        ]);
+
+        return json_decode($response->getBody());
     }
 
-    public function post($url, $options)
+    protected function post($url, $options)
     {
         $response = $this->client->request('POST', $url, [
             'form_params' => $options,
         ]);
+
+        return json_decode($response->getBody());
     }
 }

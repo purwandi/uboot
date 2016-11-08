@@ -11,7 +11,8 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        return (new GitlabManager)->api('projects')->show(1834741);
+        return view('projects.index');
+        // return (new GitlabManager)->api('projects')->show(1834741);
         // return (new GitlabManager)->api('projects')->all();
 
         // dd(GitLab::connection('main')->api('projects')->all());
@@ -31,14 +32,19 @@ class ProjectController extends Controller
             'description' => $request->input('description'),
         ]);
 
-        (new SlackManager)->api('channel')->create($project->name);
+        $slack  = (new SlackManager)->api('channel')->create($project->name);
+        $gitlab = (new GitlabManager)->api('projects')->create($project->name, [
+            'description'  => $project->description,
+            'namespace_id' => env('GITLAB_NAMESPACE'),
+        ]);
 
-        // (new GitlabManager)->api('projects')->create($project->name, [
-        //     'description'  => $project->description,
-        //     'namespace_id' => 866275,
-        // ]);
+        \Log::info($slack);
+        \Log::info($gitlab);
 
-        // event(\App\Events\ProjectCreated::class, $project);
+        $project->gitlab_namespace_id = env('GITLAB_NAMESPACE');
+        $project->gitlab_id           = json_decode($gitlab)->id;
+        $project->slack_channel_id    = json_decode($slack)->channel->id;
+        $project->save();
 
         return $project;
     }

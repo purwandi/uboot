@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 class BoardController extends Controller
 {
-    public function index()
+    public function show($id)
     {
-        return view('board.index');
+        return view('board.show');
     }
 }

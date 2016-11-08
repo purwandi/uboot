@@ -1,6 +1,6 @@
 body {
-      min-width: 1020px;
-    word-wrap: break-word;
+  min-width: 1020px;
+  word-wrap: break-word;
 }
 .board-content {
   width: 100%;
@@ -156,7 +156,7 @@ body {
 
 .btn-octicon {
   display: inline-block;
-  padding: 5px;
+  padding: 5px 0 5px 5px;
   margin-left: 5px;
   line-height: 1;
   color: #767676;

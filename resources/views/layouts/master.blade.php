@@ -2,13 +2,21 @@
 <html>
 <head>
   <title>Board</title>
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/board.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/css/app.css" rel="stylesheet">
+
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <style type="text/css">
+    body { padding-top: 70px; }
+  </style>
 </head>
 <body>
+  @include('layouts.partials.navbar')
+  <main id="app">
+    @section('content')
+    @show
+  </main>
 
-  @section('content')
-  @show
-
+  <script src="/js/app.js"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Acme\Slack\SlackParser;
+use App\Acme\Parser;
 use Illuminate\Http\Request;
 
 class HookSlackController extends Controller
@@ -11,12 +11,11 @@ class HookSlackController extends Controller
 
     public function __construct()
     {
-        $this->parser = new SlackParser;
+        $this->parser = new Parser;
     }
 
     public function store(Request $request)
     {
-        \Log::info($request->all());
-        return $this->parser->parse('');
+        return $this->parser->parse($request->input('text'));
     }
 }
